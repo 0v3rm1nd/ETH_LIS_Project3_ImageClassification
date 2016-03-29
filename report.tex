@@ -1,0 +1,70 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[pdftex]{hyperref}
+
+% Lengths and indenting
+\setlength{\textwidth}{16.5cm}
+\setlength{\marginparwidth}{1.5cm}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.15cm}
+\setlength{\textheight}{22cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\title{Introduction to Learning and Intelligent Systems - Spring 2015}
+\author{Martin Ivanov (ivanovma@student.ethz.ch)\\ Can Tuerk (can.tuerk@juniors.ethz.ch)\\ Jens Hauser(jhauser@student.ethz.ch)\\}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Project 3 : Image Classification}
+
+\subsection*{Problem description}
+We received datafiles of images which we had to classify into ten different categories. The data consists of 2048 features and the amount of training data points is 40.000.
+
+\subsection*{Solution}
+Our solution with a best peformance of about 0.19 on the validation data due to the given loss function is mainly based on the following approach:
+
+\begin{itemize}
+
+\item To reduce the dimensions of our training data we first used a Principal Component approach with a randomized Singular Value Decomposition which keeps only the most significant singular vectors for the projection.
+
+\item After that we piped the reduced data to an gaussian Support Vector Classifier.
+\end{itemize}
+
+The best performance result we got with this approach is based on 500 $Principal Components$ and a penalty parameter $C$ of 10 of the SVM.
+
+
+\newpage
+
+\subsection*{Different Approaches}
+Unfortunately we didn't reach the hard baseline this time, although we spent a huge amount of time and tried the following approaches with a lot of different hyper parameters:
+
+\begin{itemize}
+\item ExtraTreesClassifier
+\item PCA - ExtraTreesClassifier
+\item RandomizedPCA - ExtraTreesClassifier
+\item kernelPCA - ExtraTreesClassifier
+\item PCA - LinearSVC
+\item kernelPCA - LinearSVC
+\item SGDClassifier
+\item RandomizedPCA - LinearSVC
+\item PCA - SGDClassifier
+\item RandomizedPCA - SGDClassifier
+\item PCA - SVC
+\item RandomizedPCA - SVC
+\item kernelPCA - SVC
+\item Neural Network - LinearSVC
+\item Neural Network - SVC
+
+\end{itemize}
+
+
+\end{document}
